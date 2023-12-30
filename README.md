@@ -33,16 +33,19 @@ Sample:
 > - In Windows, the hosts file can be found at: c:\Windows\System32\Drivers\etc\hosts
 
 <br><hr><br>
-#### Post setup
+
+<h2> Post setup </h2>
 
 For running the following commands, you have two choices:
 - Download Kafka binaries from ```https://kafka.apache.org/downloads```, and run the commands from bin directory. (You will need Java to be already setup)
 - You can run the commands from inside one of the 3 containers.
 
 
-###### Check Kafka setup:
+<h3> Check Kafka setup: </h3>
+
 ```kafka-metadata-quorum.sh --bootstrap-server kafka-0:19092 describe --status```
 <br>
+
 output should look something like this:
 ```
 ClusterId:              TkU3oEVVNTZwNJJENDL2Q0
@@ -56,14 +59,16 @@ CurrentObservers:       [1,2]
 ```
 Above output shows that there is 1 controller and 2 other brokers, it also shows Node:0 is the leader.
 
-#### Some benchmarks
+<hr>
+<h3> Some benchmarks</h3>
 
-I have added a benchmark.md file which contains some producer/consumer benchmark tests that you can run on your cluster to check the performance.
-
-#### Results from a benchmark seeing the performance of various compression algorithms
+I have added a ```benchmark.md``` file which contains some producer/consumer benchmark tests that you can run on your cluster to check the performance.
+<br>
+<h3> Results from benchmark tests to compare the performance of various compression algorithms </h4>
 <br>
 
 The command used for the various producer tests is a variation of the following with different compression algorithms (none, snappy, gzip, zstd, lz4)
+
 ```
 time ./kafka-producer-perf-test.sh \
 --topic test_topic \
@@ -80,4 +85,4 @@ producer-metrics:request-latency-avg\|\
 producer-metrics:batch-size-avg"
 ```
 
-The comparison is provided in the compression-comparison.xlsx file.
+The comparison is provided in the ```compression-comparison.xlsx``` file.
