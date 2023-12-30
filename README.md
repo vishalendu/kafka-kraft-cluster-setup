@@ -56,4 +56,28 @@ CurrentObservers:       [1,2]
 ```
 Above output shows that there is 1 controller and 2 other brokers, it also shows Node:0 is the leader.
 
+#### Some benchmarks
 
+I have added a benchmark.md file which contains some producer/consumer benchmark tests that you can run on your cluster to check the performance.
+
+#### Results from a benchmark seeing the performance of various compression algorithms
+<br>
+
+The command used for the various producer tests is a variation of the following with different compression algorithms (none, snappy, gzip, zstd, lz4)
+```
+time ./kafka-producer-perf-test.sh \
+--topic test_topic \
+--throughput -1 \
+--num-records 3000000 \
+--record-size 1024 \
+--producer-props acks=all buffer.memory=67108864 batch.size=100000 linger.ms=100 compression.type=none \
+bootstrap.servers=kafka-0:19092,kafka-1:29092,kafka-2:39092 --print-metrics | grep \
+"3000000 records sent\|\
+producer-metrics:outgoing-byte-rate\|\
+producer-metrics:bufferpool-wait-ratio\|\
+producer-metrics:record-queue-time-avg\|\
+producer-metrics:request-latency-avg\|\
+producer-metrics:batch-size-avg"
+```
+
+The comparison is provided in the compression-comparison.xlsx file.
