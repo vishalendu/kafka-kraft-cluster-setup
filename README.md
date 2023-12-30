@@ -86,3 +86,5 @@ producer-metrics:batch-size-avg"
 ```
 
 The comparison is provided in the ```compression-comparison.xlsx``` file.
+
+<H2>From the comparison, I personally feel that zstd is probably the best bang for the buck in terms of cpu utilization for compression and the compression ratio.</H2>
