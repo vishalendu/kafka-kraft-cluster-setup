@@ -1,0 +1,2 @@
+mkdir -p data/kafka-{0..2}/logs
+chmod -R 777 data
